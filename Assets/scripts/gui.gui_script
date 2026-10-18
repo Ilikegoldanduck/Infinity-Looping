@@ -1,6 +1,6 @@
 local numbers = require("Assets.scripts.numbers")
 
-local values = {"alpha"}
+local values = {"alpha", "beta", "gamma", "delta", "epsilon", "zeta"}
 
 function init(self)
 	-- Add initialization code here
@@ -14,10 +14,28 @@ function final(self)
 	-- Remove this function if not needed
 end
 
+local function convertValue(num)
+	num = math.floor(num * 100) / 100
+	if num >= 1000 then	
+		num = math.floor(num * 100) / 100
+		return tostring(math.floor(num / math.pow(10, math.floor(math.log(num, 10))) * 100) / 100) .. "e" .. tostring(math.floor(math.log(num, 10)))
+	end
+	return tostring(num)
+end
+
 function update(self, dt)
 	for i, v in ipairs(values) do
-		gui.set_text(gui.get_node(v), tostring(numbers.getValues(i) or 0))
+		gui.set_text(gui.get_node(v), v .. ": " .. convertValue(numbers.getValues(i)) .. " | " .. convertValue(numbers.getMulti(i)))
 	end
+	gui.set_text(gui.get_node("deltaCd"), "deltaCd: " .. tostring(numbers.getDeltaOnCd()))
+	local text = ""
+	for i = 1, 5, 1 do
+		for x = 1, 3, 1 do
+			text = text .. numbers.getUpgrade(i, x) .. " "
+		end
+		text = text .. "\n"
+	end
+	gui.set_text(gui.get_node("thingy"), text)
 end
 
 function on_message(self, message_id, message, sender)

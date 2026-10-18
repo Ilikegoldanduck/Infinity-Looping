@@ -1,15 +1,23 @@
 local numbers = require("Assets.scripts.numbers")
 
-local currencyIncreasors = {"/currencyIncreasors#alpha"}
-local alphaUpgradeTree = {"/alphaTree#upgrade1"}
-local betaUpgradeTree = {}
+local currencyIncreasors = {"/alpha", "/beta", "/delta", "/zeta"}
+
+local alphaUpgradeTree = {"/alphaupgrade1", "/alphaupgrade2", "/alphaupgrade3"}
+local betaUpgradeTree = {"/betaupgrade1", "/betaupgrade2", "/betaupgrade3"}
+local charlieUpgradeTree = {"/charlieupgrade1", "/charlieupgrade2", "/charlieupgrade3"}
+local deltaUpgradeTree = {"/deltaupgrade1", "/deltaupgrade2", "/deltaupgrade3"}
+
+local upgradeTree = {alphaUpgradeTree, betaUpgradeTree, charlieUpgradeTree, deltaUpgradeTree}
 
 local camVelocity = vmath.vector3()
 
 local prevMouse = {0, 0}
 
+local prevTime = os.time()
+
 function init(self)
 	msg.post(".", "acquire_input_focus")
+	numbers.loadFile()
 end
 
 function final(self)
@@ -21,6 +29,18 @@ end
 function update(self, dt)
 	go.set_position(go.get_position() + camVelocity, ".")
 	camVelocity = vmath.vector3()
+
+	if os.time() ~= prevTime then
+		for i = 1, os.time() - prevTime, 1 do
+			if numbers.getValues(2) > 0 then
+				numbers.increaseGamma()
+			end
+			if numbers.getValues(4) > 0 then
+				numbers.increaseEpsilon()
+			end
+		end
+	end
+	prevTime = os.time()
 end
 
 function late_update(self, dt)
@@ -55,14 +75,31 @@ function on_input(self, action_id, action)
 	end
 
 	if action.pressed and action_id == hash("touch") then
-		if math.abs(mouse_pos.x - go.get_position("/currencyIncreasors#alpha").x) <= 10 and math.abs(mouse_pos.y - go.get_position("/currencyIncreasors#alpha").y) <= 10 then
-			numbers.increaseAlpha()
-		end
-		for i, v in ipairs(alphaUpgradeTree) do
-			if math.abs(mouse_pos.x - go.get_position(v).x) <= 10 and math.abs(mouse_pos.y - go.get_position(v).y) <= 10 and numbers.upgradeCost(1, i) then
-				numbers.changeAdditives(1, 1)
-				numbers.increaseUpgrade(1, i)
+		for i, v in ipairs(currencyIncreasors) do
+			if math.abs(mouse_pos.x - go.get_position(v).x) <= 10 and math.abs(mouse_pos.y - go.get_position(v).y) <= 10 then
+				if i == 1 then
+					numbers.increaseAlpha()
+				elseif i == 2 and numbers.checkBetaIncreaseable() then
+					numbers.increaseBeta()
+				elseif i == 3 and numbers.getValues(3) >= 100 then
+					numbers.increaseDelta()
+				elseif i == 4 and numbers.getValues(2) > 1 and numbers.getValues(4) > 1 and numbers.getValues(5) > 1 then
+					numbers.increaseZeta()
+				end
 			end
+		end
+		for tree, upgradeTreeNode in ipairs(upgradeTree) do
+			for i, v in ipairs(upgradeTreeNode) do
+				if math.abs(mouse_pos.x - go.get_position(v).x) <= 10 and math.abs(mouse_pos.y - go.get_position(v).y) <= 10 and numbers.upgradeCost(tree, i) then
+					numbers.buyUpgrade(tree, i)
+				end
+			end
+		end
+		if math.abs(mouse_pos.x - go.get_position("save").x) <= 10 and math.abs(mouse_pos.y - go.get_position("save").y) <= 10 then
+			numbers.saveFile()
+		end
+		if math.abs(mouse_pos.x - go.get_position("reset").x) <= 10 and math.abs(mouse_pos.y - go.get_position("reset").y) <= 10 then
+			numbers.resetFile()
 		end
 	else
 		if action_id == hash("up") then

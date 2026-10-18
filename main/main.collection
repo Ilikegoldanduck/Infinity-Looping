@@ -24,31 +24,24 @@ embedded_instances {
   ""
 }
 embedded_instances {
-  id: "alphaTree"
-  data: "embedded_components {\n"
-  "  id: \"alphaupgrade1\"\n"
-  "  type: \"sprite\"\n"
-  "  data: \"default_animation: \\\"anim\\\"\\n"
-  "material: \\\"/builtins/materials/sprite.material\\\"\\n"
-  "textures {\\n"
-  "  sampler: \\\"texture_sampler\\\"\\n"
-  "  texture: \\\"/builtins/graphics/particle_blob.tilesource\\\"\\n"
-  "}\\n"
-  "\"\n"
-  "  position {\n"
-  "    x: 100.0\n"
-  "    y: 100.0\n"
-  "  }\n"
-  "}\n"
-  ""
+  id: "currencyIncreasors"
+  children: "alpha"
+  children: "beta"
+  children: "delta"
+  children: "zeta"
+  data: ""
 }
 embedded_instances {
-  id: "currencyIncreasors"
+  id: "alpha"
   data: "embedded_components {\n"
   "  id: \"alpha\"\n"
   "  type: \"sprite\"\n"
   "  data: \"default_animation: \\\"anim\\\"\\n"
   "material: \\\"/builtins/materials/sprite.material\\\"\\n"
+  "size {\\n"
+  "  x: 32.0\\n"
+  "  y: 32.0\\n"
+  "}\\n"
   "textures {\\n"
   "  sampler: \\\"texture_sampler\\\"\\n"
   "  texture: \\\"/builtins/graphics/particle_blob.tilesource\\\"\\n"
@@ -60,4 +53,436 @@ embedded_instances {
   "  }\n"
   "}\n"
   ""
+}
+embedded_instances {
+  id: "beta"
+  data: "embedded_components {\n"
+  "  id: \"alpha1\"\n"
+  "  type: \"sprite\"\n"
+  "  data: \"default_animation: \\\"anim\\\"\\n"
+  "material: \\\"/builtins/materials/sprite.material\\\"\\n"
+  "size {\\n"
+  "  x: 32.0\\n"
+  "  y: 32.0\\n"
+  "}\\n"
+  "textures {\\n"
+  "  sampler: \\\"texture_sampler\\\"\\n"
+  "  texture: \\\"/builtins/graphics/particle_blob.tilesource\\\"\\n"
+  "}\\n"
+  "\"\n"
+  "  scale {\n"
+  "    x: 2.0\n"
+  "    y: 2.0\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: 100.0
+  }
+}
+embedded_instances {
+  id: "upgradeCollection"
+  children: "alphaTree"
+  children: "betaTree"
+  children: "charlieTree"
+  children: "deltaTree"
+  data: ""
+}
+embedded_instances {
+  id: "alphaTree"
+  children: "alphaupgrade1"
+  children: "alphaupgrade2"
+  children: "alphaupgrade3"
+  data: ""
+}
+embedded_instances {
+  id: "betaTree"
+  children: "betaupgrade1"
+  children: "betaupgrade2"
+  children: "betaupgrade3"
+  data: ""
+}
+embedded_instances {
+  id: "charlieTree"
+  children: "charlieupgrade1"
+  children: "charlieupgrade2"
+  children: "charlieupgrade3"
+  data: ""
+}
+embedded_instances {
+  id: "deltaTree"
+  children: "deltaupgrade1"
+  children: "deltaupgrade2"
+  children: "deltaupgrade3"
+  data: ""
+}
+embedded_instances {
+  id: "alphaupgrade1"
+  data: "embedded_components {\n"
+  "  id: \"alphaupgrade1\"\n"
+  "  type: \"sprite\"\n"
+  "  data: \"default_animation: \\\"unlocked\\\"\\n"
+  "material: \\\"/builtins/materials/sprite.material\\\"\\n"
+  "size {\\n"
+  "  x: 16.0\\n"
+  "  y: 16.0\\n"
+  "}\\n"
+  "textures {\\n"
+  "  sampler: \\\"texture_sampler\\\"\\n"
+  "  texture: \\\"/Assets/sourceBin/temp1.tilesource\\\"\\n"
+  "}\\n"
+  "\"\n"
+  "}\n"
+  ""
+  position {
+    x: 100.0
+    y: 100.0
+  }
+}
+embedded_instances {
+  id: "alphaupgrade2"
+  data: "embedded_components {\n"
+  "  id: \"alphaupgrade2\"\n"
+  "  type: \"sprite\"\n"
+  "  data: \"default_animation: \\\"unlocked\\\"\\n"
+  "material: \\\"/builtins/materials/sprite.material\\\"\\n"
+  "size {\\n"
+  "  x: 16.0\\n"
+  "  y: 16.0\\n"
+  "}\\n"
+  "textures {\\n"
+  "  sampler: \\\"texture_sampler\\\"\\n"
+  "  texture: \\\"/Assets/sourceBin/temp1.tilesource\\\"\\n"
+  "}\\n"
+  "\"\n"
+  "}\n"
+  ""
+  position {
+    x: 200.0
+    y: 100.0
+  }
+}
+embedded_instances {
+  id: "alphaupgrade3"
+  data: "embedded_components {\n"
+  "  id: \"alphaupgrade2\"\n"
+  "  type: \"sprite\"\n"
+  "  data: \"default_animation: \\\"unlocked\\\"\\n"
+  "material: \\\"/builtins/materials/sprite.material\\\"\\n"
+  "size {\\n"
+  "  x: 16.0\\n"
+  "  y: 16.0\\n"
+  "}\\n"
+  "textures {\\n"
+  "  sampler: \\\"texture_sampler\\\"\\n"
+  "  texture: \\\"/Assets/sourceBin/temp1.tilesource\\\"\\n"
+  "}\\n"
+  "\"\n"
+  "}\n"
+  ""
+  position {
+    x: 300.0
+    y: 100.0
+  }
+}
+embedded_instances {
+  id: "betaupgrade1"
+  data: "embedded_components {\n"
+  "  id: \"alphaupgrade1\"\n"
+  "  type: \"sprite\"\n"
+  "  data: \"default_animation: \\\"unlocked\\\"\\n"
+  "material: \\\"/builtins/materials/sprite.material\\\"\\n"
+  "size {\\n"
+  "  x: 16.0\\n"
+  "  y: 16.0\\n"
+  "}\\n"
+  "textures {\\n"
+  "  sampler: \\\"texture_sampler\\\"\\n"
+  "  texture: \\\"/Assets/sourceBin/temp1.tilesource\\\"\\n"
+  "}\\n"
+  "\"\n"
+  "}\n"
+  ""
+  position {
+    x: 100.0
+    y: 200.0
+  }
+}
+embedded_instances {
+  id: "betaupgrade2"
+  data: "embedded_components {\n"
+  "  id: \"alphaupgrade2\"\n"
+  "  type: \"sprite\"\n"
+  "  data: \"default_animation: \\\"unlocked\\\"\\n"
+  "material: \\\"/builtins/materials/sprite.material\\\"\\n"
+  "size {\\n"
+  "  x: 16.0\\n"
+  "  y: 16.0\\n"
+  "}\\n"
+  "textures {\\n"
+  "  sampler: \\\"texture_sampler\\\"\\n"
+  "  texture: \\\"/Assets/sourceBin/temp1.tilesource\\\"\\n"
+  "}\\n"
+  "\"\n"
+  "}\n"
+  ""
+  position {
+    x: 200.0
+    y: 200.0
+  }
+}
+embedded_instances {
+  id: "betaupgrade3"
+  data: "embedded_components {\n"
+  "  id: \"alphaupgrade2\"\n"
+  "  type: \"sprite\"\n"
+  "  data: \"default_animation: \\\"unlocked\\\"\\n"
+  "material: \\\"/builtins/materials/sprite.material\\\"\\n"
+  "size {\\n"
+  "  x: 16.0\\n"
+  "  y: 16.0\\n"
+  "}\\n"
+  "textures {\\n"
+  "  sampler: \\\"texture_sampler\\\"\\n"
+  "  texture: \\\"/Assets/sourceBin/temp1.tilesource\\\"\\n"
+  "}\\n"
+  "\"\n"
+  "}\n"
+  ""
+  position {
+    x: 300.0
+    y: 200.0
+  }
+}
+embedded_instances {
+  id: "charlieupgrade1"
+  data: "embedded_components {\n"
+  "  id: \"alphaupgrade1\"\n"
+  "  type: \"sprite\"\n"
+  "  data: \"default_animation: \\\"unlocked\\\"\\n"
+  "material: \\\"/builtins/materials/sprite.material\\\"\\n"
+  "size {\\n"
+  "  x: 16.0\\n"
+  "  y: 16.0\\n"
+  "}\\n"
+  "textures {\\n"
+  "  sampler: \\\"texture_sampler\\\"\\n"
+  "  texture: \\\"/Assets/sourceBin/temp1.tilesource\\\"\\n"
+  "}\\n"
+  "\"\n"
+  "}\n"
+  ""
+  position {
+    x: 100.0
+    y: 300.0
+  }
+}
+embedded_instances {
+  id: "charlieupgrade2"
+  data: "embedded_components {\n"
+  "  id: \"alphaupgrade2\"\n"
+  "  type: \"sprite\"\n"
+  "  data: \"default_animation: \\\"unlocked\\\"\\n"
+  "material: \\\"/builtins/materials/sprite.material\\\"\\n"
+  "size {\\n"
+  "  x: 16.0\\n"
+  "  y: 16.0\\n"
+  "}\\n"
+  "textures {\\n"
+  "  sampler: \\\"texture_sampler\\\"\\n"
+  "  texture: \\\"/Assets/sourceBin/temp1.tilesource\\\"\\n"
+  "}\\n"
+  "\"\n"
+  "}\n"
+  ""
+  position {
+    x: 200.0
+    y: 300.0
+  }
+}
+embedded_instances {
+  id: "charlieupgrade3"
+  data: "embedded_components {\n"
+  "  id: \"alphaupgrade2\"\n"
+  "  type: \"sprite\"\n"
+  "  data: \"default_animation: \\\"unlocked\\\"\\n"
+  "material: \\\"/builtins/materials/sprite.material\\\"\\n"
+  "size {\\n"
+  "  x: 16.0\\n"
+  "  y: 16.0\\n"
+  "}\\n"
+  "textures {\\n"
+  "  sampler: \\\"texture_sampler\\\"\\n"
+  "  texture: \\\"/Assets/sourceBin/temp1.tilesource\\\"\\n"
+  "}\\n"
+  "\"\n"
+  "}\n"
+  ""
+  position {
+    x: 300.0
+    y: 300.0
+  }
+}
+embedded_instances {
+  id: "deltaupgrade1"
+  data: "embedded_components {\n"
+  "  id: \"alphaupgrade1\"\n"
+  "  type: \"sprite\"\n"
+  "  data: \"default_animation: \\\"unlocked\\\"\\n"
+  "material: \\\"/builtins/materials/sprite.material\\\"\\n"
+  "size {\\n"
+  "  x: 16.0\\n"
+  "  y: 16.0\\n"
+  "}\\n"
+  "textures {\\n"
+  "  sampler: \\\"texture_sampler\\\"\\n"
+  "  texture: \\\"/Assets/sourceBin/temp1.tilesource\\\"\\n"
+  "}\\n"
+  "\"\n"
+  "}\n"
+  ""
+  position {
+    x: 100.0
+    y: 400.0
+  }
+}
+embedded_instances {
+  id: "deltaupgrade2"
+  data: "embedded_components {\n"
+  "  id: \"alphaupgrade2\"\n"
+  "  type: \"sprite\"\n"
+  "  data: \"default_animation: \\\"unlocked\\\"\\n"
+  "material: \\\"/builtins/materials/sprite.material\\\"\\n"
+  "size {\\n"
+  "  x: 16.0\\n"
+  "  y: 16.0\\n"
+  "}\\n"
+  "textures {\\n"
+  "  sampler: \\\"texture_sampler\\\"\\n"
+  "  texture: \\\"/Assets/sourceBin/temp1.tilesource\\\"\\n"
+  "}\\n"
+  "\"\n"
+  "}\n"
+  ""
+  position {
+    x: 200.0
+    y: 400.0
+  }
+}
+embedded_instances {
+  id: "deltaupgrade3"
+  data: "embedded_components {\n"
+  "  id: \"alphaupgrade2\"\n"
+  "  type: \"sprite\"\n"
+  "  data: \"default_animation: \\\"unlocked\\\"\\n"
+  "material: \\\"/builtins/materials/sprite.material\\\"\\n"
+  "size {\\n"
+  "  x: 16.0\\n"
+  "  y: 16.0\\n"
+  "}\\n"
+  "textures {\\n"
+  "  sampler: \\\"texture_sampler\\\"\\n"
+  "  texture: \\\"/Assets/sourceBin/temp1.tilesource\\\"\\n"
+  "}\\n"
+  "\"\n"
+  "}\n"
+  ""
+  position {
+    x: 300.0
+    y: 400.0
+  }
+}
+embedded_instances {
+  id: "delta"
+  data: "embedded_components {\n"
+  "  id: \"alpha1\"\n"
+  "  type: \"sprite\"\n"
+  "  data: \"default_animation: \\\"anim\\\"\\n"
+  "material: \\\"/builtins/materials/sprite.material\\\"\\n"
+  "size {\\n"
+  "  x: 32.0\\n"
+  "  y: 32.0\\n"
+  "}\\n"
+  "textures {\\n"
+  "  sampler: \\\"texture_sampler\\\"\\n"
+  "  texture: \\\"/builtins/graphics/particle_blob.tilesource\\\"\\n"
+  "}\\n"
+  "\"\n"
+  "  scale {\n"
+  "    x: 2.0\n"
+  "    y: 2.0\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: 200.0
+  }
+}
+embedded_instances {
+  id: "save"
+  data: "embedded_components {\n"
+  "  id: \"sprite\"\n"
+  "  type: \"sprite\"\n"
+  "  data: \"default_animation: \\\"bought\\\"\\n"
+  "material: \\\"/builtins/materials/sprite.material\\\"\\n"
+  "textures {\\n"
+  "  sampler: \\\"texture_sampler\\\"\\n"
+  "  texture: \\\"/Assets/sourceBin/temp1.tilesource\\\"\\n"
+  "}\\n"
+  "\"\n"
+  "}\n"
+  ""
+  position {
+    x: -100.0
+    y: 100.0
+  }
+}
+embedded_instances {
+  id: "reset"
+  data: "embedded_components {\n"
+  "  id: \"sprite\"\n"
+  "  type: \"sprite\"\n"
+  "  data: \"default_animation: \\\"reded\\\"\\n"
+  "material: \\\"/builtins/materials/sprite.material\\\"\\n"
+  "size {\\n"
+  "  x: 16.0\\n"
+  "  y: 16.0\\n"
+  "}\\n"
+  "textures {\\n"
+  "  sampler: \\\"texture_sampler\\\"\\n"
+  "  texture: \\\"/Assets/sourceBin/temp1.tilesource\\\"\\n"
+  "}\\n"
+  "\"\n"
+  "}\n"
+  ""
+  position {
+    x: -200.0
+    y: 100.0
+  }
+}
+embedded_instances {
+  id: "zeta"
+  data: "embedded_components {\n"
+  "  id: \"alpha1\"\n"
+  "  type: \"sprite\"\n"
+  "  data: \"default_animation: \\\"anim\\\"\\n"
+  "material: \\\"/builtins/materials/sprite.material\\\"\\n"
+  "size {\\n"
+  "  x: 32.0\\n"
+  "  y: 32.0\\n"
+  "}\\n"
+  "textures {\\n"
+  "  sampler: \\\"texture_sampler\\\"\\n"
+  "  texture: \\\"/builtins/graphics/particle_blob.tilesource\\\"\\n"
+  "}\\n"
+  "\"\n"
+  "  scale {\n"
+  "    x: 2.0\n"
+  "    y: 2.0\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: 300.0
+  }
 }

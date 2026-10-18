@@ -5,8 +5,119 @@ fonts {
 }
 nodes {
   scale {
-    x: 3.0
-    y: 3.0
+    x: 2.0
+    y: 2.0
+  }
+  size {
+    x: 10.0
+    y: 20.0
+  }
+  type: TYPE_TEXT
+  text: "-text-"
+  font: "default"
+  id: "alpha"
+  pivot: PIVOT_SW
+  inherit_alpha: true
+}
+nodes {
+  position {
+    y: 30.0
+  }
+  scale {
+    x: 2.0
+    y: 2.0
+  }
+  size {
+    x: 10.0
+    y: 20.0
+  }
+  type: TYPE_TEXT
+  text: "-text-"
+  font: "default"
+  id: "beta"
+  pivot: PIVOT_SW
+  inherit_alpha: true
+}
+nodes {
+  position {
+    y: 60.0
+  }
+  scale {
+    x: 2.0
+    y: 2.0
+  }
+  size {
+    x: 10.0
+    y: 20.0
+  }
+  type: TYPE_TEXT
+  text: "-text-"
+  font: "default"
+  id: "gamma"
+  pivot: PIVOT_SW
+  inherit_alpha: true
+}
+nodes {
+  position {
+    y: 90.0
+  }
+  scale {
+    x: 2.0
+    y: 2.0
+  }
+  size {
+    x: 10.0
+    y: 20.0
+  }
+  type: TYPE_TEXT
+  text: "-text-"
+  font: "default"
+  id: "delta"
+  pivot: PIVOT_SW
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: 960.0
+  }
+  scale {
+    x: 2.0
+    y: 2.0
+  }
+  size {
+    x: 10.0
+    y: 20.0
+  }
+  type: TYPE_TEXT
+  text: "-text-"
+  font: "default"
+  id: "deltaCd"
+  pivot: PIVOT_SE
+  inherit_alpha: true
+}
+nodes {
+  position {
+    y: 120.0
+  }
+  scale {
+    x: 2.0
+    y: 2.0
+  }
+  size {
+    x: 10.0
+    y: 20.0
+  }
+  type: TYPE_TEXT
+  text: "-text-"
+  font: "default"
+  id: "epsilon"
+  pivot: PIVOT_SW
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: 960.0
+    y: 640.0
   }
   size {
     x: 200.0
@@ -15,7 +126,26 @@ nodes {
   type: TYPE_TEXT
   text: "-text-"
   font: "default"
-  id: "alpha"
+  id: "thingy"
+  pivot: PIVOT_NE
+  inherit_alpha: true
+}
+nodes {
+  position {
+    y: 150.0
+  }
+  scale {
+    x: 2.0
+    y: 2.0
+  }
+  size {
+    x: 10.0
+    y: 20.0
+  }
+  type: TYPE_TEXT
+  text: "-text-"
+  font: "default"
+  id: "zeta"
   pivot: PIVOT_SW
   inherit_alpha: true
 }

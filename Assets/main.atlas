@@ -1,4 +1,0 @@
-images {
-  image: "/builtins/assets/images/logo/logo_256.png"
-}
-extrude_borders: 2
