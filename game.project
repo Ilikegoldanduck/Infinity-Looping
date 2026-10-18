@@ -20,6 +20,7 @@ scale = 0.01
 scale_mode = stretch
 
 [project]
-title = Empty Project
+title = Infinity Looping
+version = 0.1
 dependencies#0 = https://github.com/subsoap/defos/archive/refs/tags/v2.8.7.zip
 

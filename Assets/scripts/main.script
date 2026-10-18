@@ -1,22 +1,25 @@
 local numbers = require("Assets.scripts.numbers")
 
-local currencyIncreasors = {"/alpha", "/beta", "/delta", "/zeta"}
+local currencyIncreasors = {"/point", "/skill", "/research", "/profit"}
 
-local alphaUpgradeTree = {"/alphaupgrade1", "/alphaupgrade2", "/alphaupgrade3"}
-local betaUpgradeTree = {"/betaupgrade1", "/betaupgrade2", "/betaupgrade3"}
-local charlieUpgradeTree = {"/charlieupgrade1", "/charlieupgrade2", "/charlieupgrade3"}
-local deltaUpgradeTree = {"/deltaupgrade1", "/deltaupgrade2", "/deltaupgrade3"}
+local pointUpgradeTree = {"/pointupgrade1", "/pointupgrade2", "/pointupgrade3"}
+local skillUpgradeTree = {"/skillupgrade1", "/skillupgrade2", "/skillupgrade3", "/skillupgrade4"}
+local timeUpgradeTree = {"/timeupgrade1", "/timeupgrade2", "/timeupgrade3"}
+local researchUpgradeTree = {"/researchupgrade1", "/researchupgrade2", "/researchupgrade3"}
+local cashUpgradeTree = {"/cashupgrade1", "/cashupgrade2"}
 
-local upgradeTree = {alphaUpgradeTree, betaUpgradeTree, charlieUpgradeTree, deltaUpgradeTree}
+local upgradeTree = {pointUpgradeTree, skillUpgradeTree, timeUpgradeTree, researchUpgradeTree, {}, {}, cashUpgradeTree}
 
 local camVelocity = vmath.vector3()
 
 local prevMouse = {0, 0}
-
 local prevTime = os.time()
+
+local pointAutoCd = 0
 
 function init(self)
 	msg.post(".", "acquire_input_focus")
+	prevTime = os.time()
 	numbers.loadFile()
 end
 
@@ -33,14 +36,31 @@ function update(self, dt)
 	if os.time() ~= prevTime then
 		for i = 1, os.time() - prevTime, 1 do
 			if numbers.getValues(2) > 0 then
-				numbers.increaseGamma()
+				numbers.increaseTime()
 			end
 			if numbers.getValues(4) > 0 then
-				numbers.increaseEpsilon()
+				numbers.increaseEnergy()
+			end
+			if numbers.getValues(6) > 0 then
+				numbers.increaseCash()
 			end
 		end
 	end
 	prevTime = os.time()
+
+	for i, v in ipairs(numbers.getUpdates()) do
+		if v[3] == hash("refresh") then
+
+		else
+			sprite.play_flipbook(upgradeTree[v[1]][v[2]] .. "#sprite", v[3])
+		end
+		if v[3] == hash("complete") then
+			go.set(upgradeTree[v[1]][v[2]] .. "#costLabel", "text", "")
+		else
+			go.set(upgradeTree[v[1]][v[2]] .. "#costLabel", "text", numbers.sendCosts(v[1], v[2]))
+		end
+		go.set(upgradeTree[v[1]][v[2]] .. "#upgradeLabel", "text", numbers.getUpgrade(v[1], v[2]))
+	end
 end
 
 function late_update(self, dt)
@@ -78,13 +98,13 @@ function on_input(self, action_id, action)
 		for i, v in ipairs(currencyIncreasors) do
 			if math.abs(mouse_pos.x - go.get_position(v).x) <= 10 and math.abs(mouse_pos.y - go.get_position(v).y) <= 10 then
 				if i == 1 then
-					numbers.increaseAlpha()
-				elseif i == 2 and numbers.checkBetaIncreaseable() then
-					numbers.increaseBeta()
+					numbers.increasePoints()
+				elseif i == 2 and numbers.checkSkillIncreaseable() then
+					numbers.increaseSkill()
 				elseif i == 3 and numbers.getValues(3) >= 100 then
-					numbers.increaseDelta()
+					numbers.increaseResearch()
 				elseif i == 4 and numbers.getValues(2) > 1 and numbers.getValues(4) > 1 and numbers.getValues(5) > 1 then
-					numbers.increaseZeta()
+					numbers.increaseProfits()
 				end
 			end
 		end

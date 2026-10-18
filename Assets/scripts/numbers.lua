@@ -1,17 +1,24 @@
 local numbers = {}
 
 --alpha beta gamma delta epsilon zeta eta theta iota kappa iambda mu nu xi omicron pi rho sigma tau upsilon phi chi psi omega
-local numberValues = {10}
+local numberValues = {}
+local values = {"Points", "Skill", "Time", "Research", "Energy", "Profits", "Cash"}
+
 local additiveMultipliers = {}
 local multiplicativeMultipliers = {}
 local additives = {}
+local selfIncrease = {}
 
-local deltaCdMulti = 0
-local deltaCd = 5
-local deltaOnCd = 0
+local researchCdMulti = 0
+local researchCd = 5
+local researchOnCd = 0
+
+local autoPointsCd = 0
+
+local upgradeTreeUpdates = {}
 
 local upgradeTreeUnlocks = {
-    { -- Alpha Upgrades
+    { -- Points Upgrades
         {
             {0, -1}, --Upgrade Amounts; -1 = inf
             true
@@ -25,10 +32,10 @@ local upgradeTreeUnlocks = {
             false
         }
     },
-    { -- Beta Upgrades
+    { -- Skill Upgrades
         {
             {0, -1}, --Upgrade Amounts; -1 = inf
-            true
+            false
         },
         {
             {0, -1}, --Upgrade Amounts; -1 = inf
@@ -37,12 +44,16 @@ local upgradeTreeUnlocks = {
         {
             {0, 3}, --Upgrade Amounts; -1 = inf
             false
+        },
+        {
+            {0, 9},
+            false
         }
     },
-    { -- Gamma Upgrades
+    { -- Time Upgrades
         {    
             {0, -1}, --Upgrade Amounts; -1 = inf
-            true
+            false
         },
         {
             {0, -1}, --Upgrade Amounts; -1 = inf
@@ -53,10 +64,10 @@ local upgradeTreeUnlocks = {
             false
         }
     },
-    { -- Delta Upgrades
+    { -- Research Upgrades
         {
             {0, -1}, --Upgrade Amounts; -1 = inf
-            true
+            false
         },
         {
             {0, -1}, --Upgrade Amounts; -1 = inf
@@ -67,20 +78,30 @@ local upgradeTreeUnlocks = {
             false
         }
     },
-    { -- Epsilon Upgrades : None
+    { -- Energy Upgrades : None
     },
-    { -- Zeta Upgrades
+    { -- Profit Upgrades
+    },
+    { -- Cash Upgrades
+        { 
+            {0, 1},
+            false
+        },
+        { 
+            {0, 1},
+            false
+        }
     }
 }
 
 local upgradeTreeInfo = {
-    { -- Alpha Upgrades
+    { -- Points Upgrades
         { --Upgrade 1
             {
                 {
                     10, --Starting cost 
                     {
-                        {"A", 10}
+                        {"AA", 10}
                     }, --A = Addition, M = Multiplication, L = Logarithms, P = Exponents, S = Starting Cost
                     1 -- Value
                 }
@@ -98,7 +119,7 @@ local upgradeTreeInfo = {
                     1 -- Value
                 }
             }, --Costs
-            {{0, .5}}, --Increasors
+            {{0, 2}}, --Increasors
             {} --Unlocks
         },
         { --Upgrade 3
@@ -106,7 +127,7 @@ local upgradeTreeInfo = {
                 {
                     10, --Starting cost 
                     {
-                        {"M", 10}, {"A", 20}
+                        {"M", 10}, {"AA", 20}
                     }, --A = Addition, M = Multiplication, L = Logarithms, P = Exponents, S = Starting Cost
                     1 -- Value
                 }
@@ -115,7 +136,7 @@ local upgradeTreeInfo = {
             {} --Unlocks
         }
     },
-    { -- Beta Upgrades
+    { -- Skill Upgrades
         { --Upgrade 1
             {
                 {
@@ -127,7 +148,7 @@ local upgradeTreeInfo = {
                 }    
             }, --Costs
             {{0, 1}}, --Increasors
-            {2, 3} --Unlocks
+            {2, 3, 4} --Unlocks
         },
         { --Upgrade 2
             {
@@ -147,22 +168,43 @@ local upgradeTreeInfo = {
                 {
                     100, --Starting cost 
                     {
-                        {"M", 10}, {"A", 20}
+                        {"M", 10}, {"AA", 20}
                     }, --A = Addition, M = Multiplication, L = Logarithms, P = Exponents, S = Starting Cost
                     2
                 }
             }, --Costs
             {{}, {}, {0, 10}}, --Increasors
             {} --Unlocks
+        },
+        { --Upgrade 4
+            {
+                
+                {
+                    100, --Starting cost
+                    {
+                        {"M", 100}, {"AA", 20}
+                    },
+                    1
+                },
+                {
+                    1, --Starting cost 
+                    {
+                        {"M", 10}, {"AA", 20}
+                    }, --A = Addition, M = Multiplication, L = Logarithms, P = Exponents, S = Starting Cost
+                    2
+                }
+            }, --Costs
+            {}, --Increasors
+            {} --Unlocks
         }
     },
-    { -- Gamma Upgrades
+    { -- Time Upgrades
         { --Upgrade 1
             {
                 {
                         1, --Starting cost 
                         {
-                            {"A", 10}
+                            {"AA", 10}
                         }, --A = Addition, M = Multiplication, L = Logarithms, P = Exponents, S = Starting Cost
                         3    
                 }
@@ -188,7 +230,7 @@ local upgradeTreeInfo = {
                 {
                     100, --Starting cost 
                     {
-                        {"M", 10}, {"A", 20}
+                        {"M", 10}, {"AA", 20}
                     }, --A = Addition, M = Multiplication, L = Logarithms, P = Exponents, S = Starting Cost
                     3
                 }
@@ -197,13 +239,13 @@ local upgradeTreeInfo = {
             {} --Unlocks
         }
     },
-    { -- Delta Upgrades
+    { -- Research Upgrades
         { --Upgrade 1
             {
                 {
                     1, --Starting cost 
                     {
-                        {"A", 10}
+                        {"AA", 10}
                     }, --A = Addition, M = Multiplication, L = Logarithms, P = Exponents, S = Starting Cost
                     4
                 }
@@ -229,7 +271,7 @@ local upgradeTreeInfo = {
                 {
                     100, --Starting cost 
                     {
-                        {"M", 10}, {"A", 20}
+                        {"M", 10}, {"AA", 20}
                     }, --A = Addition, M = Multiplication, L = Logarithms, P = Exponents, S = Starting Cost
                     4
                 }
@@ -238,19 +280,58 @@ local upgradeTreeInfo = {
             {} --Unlocks
         }
     },
-    { -- Epsilon Upgrades : None
+    { -- Energy Upgrades : None
     },
-    { -- Zeta Upgrades
+    { -- Profit Upgrades
+    },
+    { -- Cash Upgrades
+        { --Upgrade 1
+            {
+                {
+                    100, --Starting cost 
+                    {},
+                    7
+                }
+            }, --Costs
+            {}, --Increasors
+            {2} --Unlocks
+        },
+        { --Upgrade 2
+            {
+                {
+                    10000, --Starting cost 
+                    {},
+                    7
+                }
+            }, --Costs
+            {}, --Increasors
+            {} --Unlocks
+        }
     }
 }
 
 local function calculateExtra(time)
     if (numberValues[2] or 0) > 0 then
-        numberValues[3] = (numberValues[3] or 0) + ((((1 + (multiplicativeMultipliers[3] or 0)) * (1 + (additiveMultipliers[3] or 0))) * (1 + (additives[3] or 0))) * (os.time() - time))
+        numberValues[3] = (numberValues[3] or 0) + numbers.getMulti(3) * (os.time() - time)
     end
     if (numberValues[4] or 0) > 0 then
-        numberValues[5] = numberValues[5] + (os.time() - time)
+        numberValues[5] = numberValues[5] + numbers.getMulti(5) * (os.time() - time)
     end
+    if (numberValues[6] or 0) > 0 then
+        numberValues[7] = numberValues[7]  + numbers.getMulti(7) * (os.time() - time)
+    end
+end
+
+function numbers.pointAuto()
+    timer.delay(1, true, function(self, handle)
+        if upgradeTreeUnlocks[2][4][1][1] > 0 then
+            autoPointsCd = autoPointsCd - 1
+            if autoPointsCd <= 0 then
+                autoPointsCd = 10 - upgradeTreeUnlocks[2][4][1][1]
+                numbers.increasePoints()
+            end
+        end
+    end)
 end
 
 function numbers.loadFile()
@@ -258,19 +339,37 @@ function numbers.loadFile()
 
     local err, save = pcall(sys.load, path)
     numberValues = save.values or numberValues
-    calculateExtra(save.time or os.time())
     additives = save.additives or {}
     additiveMultipliers = save.additiveMultipliers or {}
     multiplicativeMultipliers = save.multiplicativeMultipliers or {}
+    calculateExtra(save.time or os.time())
     for tree, treeNode in ipairs(save.upgrades or {}) do
         for i, v in ipairs(treeNode) do
             upgradeTreeUnlocks[tree][i][1][1] = v[1][1]
-            upgradeTreeUnlocks[tree][i][2] = v[2]
+            if (tree == 1 and i == 1) or upgradeTreeUnlocks[tree][i][2] then
+                pprint(tree .. "|" .. i)
+                upgradeTreeUnlocks[tree][i][2] = true
+            else
+                upgradeTreeUnlocks[tree][i][2] = v[2]
+                if upgradeTreeUnlocks[tree][i][1][1] > 0 then
+                    local unlocks = upgradeTreeInfo[tree][i][3]
+                    for j, k in ipairs(unlocks) do
+                        pprint(tree .. "|" .. k)
+                        upgradeTreeUnlocks[tree][k][2] = true
+                        table.insert(upgradeTreeUpdates, {tree, k, hash("unlocked")})
+                    end
+                end
+            end
+            if upgradeTreeUnlocks[tree][i][1][1] == upgradeTreeUnlocks[tree][i][1][2] then
+                table.insert(upgradeTreeUpdates, {tree, i, hash("complete")})
+            elseif upgradeTreeUnlocks[tree][i][2] then
+                table.insert(upgradeTreeUpdates, {tree, i, hash("unlocked")})
+            else
+                table.insert(upgradeTreeUpdates, {tree, i, hash("refresh")})
+            end
         end
     end
-    numberValues[2] = 99999
-    numberValues[4] = 99999
-    numberValues[5] = 99999
+    numbers.pointAuto()
 end
 
 function numbers.resetFile()
@@ -288,17 +387,19 @@ end
 
 function numbers.getMulti(num)
     if num == 1 then
-        return ((1 + (multiplicativeMultipliers[1] or 0)) * (1 + (numberValues[5] or 0) + (additiveMultipliers[1] or 0)) * (1 + (additives[1] or 0)) * (1 + math.log((numberValues[2] or 1), 10)))
+        return ((multiplicativeMultipliers[1] or 1) * (1 + (numberValues[5] or 0) + (additiveMultipliers[1] or 0)) * (1 + (additives[1] or 0)) * (1 + math.log(((numberValues[2] or 0) + 1), 10)))
     elseif num == 2 then
-        return (((1 + (multiplicativeMultipliers[2] or 0)) * (1 + (additiveMultipliers[2] or 0))) * math.log(math.pow(numberValues[1], 2), 10) - 5) + (additives[2] or 0)
+        return ((multiplicativeMultipliers[2] or 1) * (1 + (additiveMultipliers[2] or 0))) * (math.log(math.pow((numberValues[1] or 0), 2 * (1 + math.log((numberValues[7] or 0) + 1, 10))), 10) - 5) * math.pow(2, - (numberValues[3] or 0)) + (additives[2] or 0)
     elseif num == 3 then
-        return (((1 + (multiplicativeMultipliers[3] or 0)) * (1 + (numberValues[5] or 0) + (additiveMultipliers[3] or 0))) * (1 + (additives[3] or 0)))
+        return ((multiplicativeMultipliers[3] or 1) * (1 + (numberValues[5] or 0) + (additiveMultipliers[3] or 0))) * (1 + (additives[3] or 0))
     elseif num == 4 then
-        return (((1 + (multiplicativeMultipliers[4] or 0)) * (1 + (additiveMultipliers[4] or 0))) * (1 + (additives[4] or 0)))
+        return ((multiplicativeMultipliers[4] or 1) * (1 + (additiveMultipliers[4] or 0))) * (1 + (additives[4] or 0))  * math.pow(math.log(((numberValues[4] or 0) + 1) * ((numberValues[7] or 0) + 1), 10), (selfIncrease[4] or 0))
     elseif num == 5 then
-        return 1
+        return 1 + math.log((numberValues[4] + 1) * (numberValues[7] + 1), 10)
     elseif num == 6 then
-        return (numberValues[2] or 0) * (2 - math.pow(2, - (numberValues[5] or 0))) * (1 + math.log((numberValues[4] or 0) + 1, 10))
+        return ((numberValues[2] or 0) * (2 - math.pow(2, - (numberValues[5] or 0))) * (1 + math.log((numberValues[4] or 0) + 1, 10)))
+    elseif num == 7 then
+        return (numberValues[6] or 0)
     end
 end
 
@@ -313,72 +414,111 @@ function numbers.getUpgrade(tree, upgrade)
     return "0/0"
 end
 
-function numbers.increaseAlpha()
+function numbers.getUpgradesTotal(tree, upgrade)
+    return upgradeTreeUnlocks[tree][upgrade][1][2] or 0
+end
+
+function numbers.getUpgradesUnlocked(tree, upgrade)
+    return upgradeTreeUnlocks[tree][upgrade][1][1] or 0
+end
+
+function numbers.increasePoints()
     numberValues[1] = (numberValues[1] or 0) + numbers.getMulti(1)
 end
 
-function numbers.increaseBeta()
+function numbers.increaseSkill()
     numberValues[2] = (numberValues[2] or 0) + numbers.getMulti(2)
     numberValues[1] = 0
-    additives[1] = 0
-    additiveMultipliers[1] = 0
-    multiplicativeMultipliers[1] = 0
-    for i, v in ipairs(upgradeTreeUnlocks[1]) do 
-        v[1][1] = 0
-        if i ~= 1 then
-            v[2] = false
+    if not ((upgradeTreeUnlocks[7][1][1][1] or 0) == 1) then
+        print("done")
+        if not upgradeTreeUnlocks[2][1][2] then
+            upgradeTreeUnlocks[2][1][2] = true
+            table.insert(upgradeTreeUpdates, {2, 1, hash("unlocked")})
+            upgradeTreeUnlocks[3][1][2] = true
+            table.insert(upgradeTreeUpdates, {3, 1, hash("unlocked")})
+        end
+        additives[1] = 0 
+        additiveMultipliers[1] = 0
+        multiplicativeMultipliers[1] = 1
+        for i, v in ipairs(upgradeTreeUnlocks[1]) do 
+            v[1][1] = 0
+            if i ~= 1 then
+                v[2] = false
+                table.insert(upgradeTreeUpdates, {1, i, hash("locked")})
+            else
+                table.insert(upgradeTreeUpdates, {1, i, hash("refresh")})
+            end
         end
     end
 end
 
-function numbers.increaseGamma()
+function numbers.increaseTime()
     numberValues[3] = (numberValues[3] or 0) + numbers.getMulti(3)
 end
 
-function numbers.increaseDelta()
-    if deltaOnCd == 0 and numberValues[3] >= 100 then
-        deltaOnCd = deltaCd
+function numbers.increaseResearch()
+    if researchOnCd == 0 and numberValues[3] >= 100 then
+        researchOnCd = researchCd
+        if not upgradeTreeUnlocks[4][1][2] then
+            upgradeTreeUnlocks[4][1][2] = true
+            table.insert(upgradeTreeUpdates, {4, 1, hash("unlocked")})
+        end
         numberValues[4] = (numberValues[4] or 0) + numbers.getMulti(4)
         numberValues[3] = numberValues[3] - 100
         timer.delay(1, true, function(self, handle)
-            deltaOnCd = deltaOnCd - 1
-            if deltaOnCd == 0 then
+            researchOnCd = researchOnCd - 1
+            if researchOnCd == 0 then
                 timer.cancel(handle)
             end
         end)
     end
 end
 
-function numbers.increaseEpsilon()
+function numbers.increaseEnergy()
     numberValues[5] = (numberValues[5] or 0) + 1
 end
 
-function numbers.increaseZeta()
-    numberValues[6] = (numberValues[6] or 0) + numbers.getMulti(6)
+function numbers.increaseProfits()
+    numberValues[6] = numbers.getMulti(6)
     numberValues[5] = 0
+    if not upgradeTreeUnlocks[7][1][2] then
+        upgradeTreeUnlocks[7][1][2] = true
+        table.insert(upgradeTreeUpdates, {7, 1, hash("unlocked")})
+    end
     for j = 1, 4, 1 do
         additives[j] = 0
         additiveMultipliers[j] = 0
-        multiplicativeMultipliers[j] = 0
+        multiplicativeMultipliers[j] = 1
         numberValues[j] = 0
         for i, v in ipairs(upgradeTreeUnlocks[j]) do 
             v[1][1] = 0
-            if i ~= 1 then
+            if j ~= 1 and i ~= 1 then
                 v[2] = false
+                table.insert(upgradeTreeUpdates, {j, i, hash("locked")})
+            else
+                table.insert(upgradeTreeUpdates, {1, i, hash("refresh")})
             end
         end
     end
 end
 
-function numbers.checkBetaIncreaseable()
+function numbers.increaseCash()
+    numberValues[7] = (numberValues[7] or 0) + numbers.getMulti(7)
+end
+
+function numbers.checkSkillIncreaseable()
     if numberValues[1] >= 1000 then
         return true
     end
     return false
 end
 
-function numbers.getDeltaOnCd()
-    return deltaOnCd
+function numbers.getResearchOnCd()
+    return researchOnCd
+end
+
+function numbers.getPointsOnCd()
+    return autoPointsCd
 end
 
 function numbers.changeAdditives(add, value)
@@ -386,7 +526,7 @@ function numbers.changeAdditives(add, value)
 end
 
 function numbers.changeAdditiveMultipliers(mult, value)
-    additiveMultipliers[value] = (additives[value] or 0) + mult
+    additiveMultipliers[value] = (additiveMultipliers[value] or 0) + mult
 end
 
 function numbers.changeMultiplicativeMultipliers(mult, value)
@@ -407,12 +547,10 @@ function numbers.calculateCosts(tree, upgradeNum)
         for i, v in ipairs(v[2]) do
             if upgrade == 0 and i == 1 then
                 
-            elseif v[1] == "A" then
-                if i == 1 then
-                    upgradeCost = upgradeCost + (upgrade * v[2])
-                else
-                    upgradeCost = upgradeCost + v[2]
-                end
+            elseif v[1] == "AA" then -- Augmented Addition
+                upgradeCost = upgradeCost + (upgrade * v[2])
+            elseif v[1] == "RA" then -- Raw Addition
+                upgradeCost = upgradeCost + v[2]
             elseif v[1] == "P" then
                 upgradeCost = math.pow(upgradeCost, v[2])
             elseif v[1] == "L" then
@@ -426,11 +564,55 @@ function numbers.calculateCosts(tree, upgradeNum)
             end
         end
 
-        if upgradeCost > numberValues[v[3]] then
+        if upgradeCost > (numberValues[v[3]] or 0) then
             return false
         end
     end
     return true
+end
+
+local function convertValue(num)
+	num = math.floor(num * 100) / 100
+	if num >= 1000 then	
+		num = math.floor(num * 100) / 100
+		return tostring(math.floor(num / math.pow(10, math.floor(math.log(num, 10))) * 100) / 100) .. "e" .. tostring(math.floor(math.log(num, 10)))
+	end
+	return tostring(num)
+end
+
+function numbers.sendCosts(tree, upgradeNum)
+    local upgrade = upgradeTreeUnlocks[tree][upgradeNum][1][1]
+    local calculators = upgradeTreeInfo[tree][upgradeNum][1]
+
+    local text = ""
+
+    for i, v in ipairs(calculators) do
+        local upgradeCost = v[1]
+
+        for i, v in ipairs(v[2]) do
+            if upgrade == 0 and i == 1 then
+                
+            elseif v[1] == "AA" then -- Augmented Addition
+                upgradeCost = upgradeCost + (upgrade * v[2])
+            elseif v[1] == "RA" then -- Raw Addition
+                upgradeCost = upgradeCost + v[2]
+            elseif v[1] == "P" then
+                upgradeCost = math.pow(upgradeCost, v[2])
+            elseif v[1] == "L" then
+                upgradeCost = math.log(upgradeCost, v[2])
+            elseif v[1] == "M" then
+                if i == 1 then
+                    upgradeCost = upgradeCost * math.pow(v[2], upgrade)
+                else
+                    upgradeCost = upgradeCost * v[2]
+                end
+            end
+        end
+
+        text = text .. values[v[3]] .. ": " .. convertValue(upgradeCost) .. "\n"
+    end
+
+    return text
 end
 
 function numbers.payCosts(tree, upgradeNum)
@@ -443,12 +625,10 @@ function numbers.payCosts(tree, upgradeNum)
         for i, v in ipairs(v[2]) do
             if upgrade == 0 and i == 1 then
                 
-            elseif v[1] == "A" then
-                if i == 1 then
-                    upgradeCost = upgradeCost + (upgrade * v[2])
-                else
-                    upgradeCost = upgradeCost + v[2]
-                end
+            elseif v[1] == "AA" then -- Augmented Addition
+                upgradeCost = upgradeCost + (upgrade * v[2])
+            elseif v[1] == "RA" then -- Raw Addition
+                upgradeCost = upgradeCost + v[2]
             elseif v[1] == "P" then
                 upgradeCost = math.pow(upgradeCost, v[2])
             elseif v[1] == "L" then
@@ -479,6 +659,7 @@ function numbers.buyUpgrade(tree, upgrade)
         if upgradeTreeUnlocks[tree][upgrade][1][1] == 0 then
             for i, v in ipairs(upgradeTreeInfo[tree][upgrade][3]) do
                 upgradeTreeUnlocks[tree][v][2] = true
+                table.insert(upgradeTreeUpdates, {tree, v, hash("unlocked")})
             end
         end
         numbers.increaseUpgrade(tree, upgrade)
@@ -487,7 +668,18 @@ function numbers.buyUpgrade(tree, upgrade)
             numbers.changeAdditiveMultipliers(v[2] or 0, i)
             numbers.changeMultiplicativeMultipliers(v[3] or 1, i)
         end
+        if upgradeTreeUnlocks[tree][upgrade][1][1] == upgradeTreeUnlocks[tree][upgrade][1][2] then
+            table.insert(upgradeTreeUpdates, {tree, upgrade, hash("complete")})
+        else
+            table.insert(upgradeTreeUpdates, {tree, upgrade, hash("refresh")})
+        end
     end
+end
+
+function numbers.getUpdates()
+    local temp = upgradeTreeUpdates
+    upgradeTreeUpdates = {}
+    return temp
 end
 
 return numbers

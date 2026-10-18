@@ -15,12 +15,32 @@ nodes {
   type: TYPE_TEXT
   text: "-text-"
   font: "default"
-  id: "alpha"
+  id: "pinnedCurrency"
   pivot: PIVOT_SW
   inherit_alpha: true
 }
 nodes {
   position {
+    x: 960.0
+  }
+  scale {
+    x: 2.0
+    y: 2.0
+  }
+  size {
+    x: 10.0
+    y: 20.0
+  }
+  type: TYPE_TEXT
+  text: "-text-"
+  font: "default"
+  id: "researchCd"
+  pivot: PIVOT_SE
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: 960.0
     y: 30.0
   }
   scale {
@@ -34,119 +54,8 @@ nodes {
   type: TYPE_TEXT
   text: "-text-"
   font: "default"
-  id: "beta"
-  pivot: PIVOT_SW
-  inherit_alpha: true
-}
-nodes {
-  position {
-    y: 60.0
-  }
-  scale {
-    x: 2.0
-    y: 2.0
-  }
-  size {
-    x: 10.0
-    y: 20.0
-  }
-  type: TYPE_TEXT
-  text: "-text-"
-  font: "default"
-  id: "gamma"
-  pivot: PIVOT_SW
-  inherit_alpha: true
-}
-nodes {
-  position {
-    y: 90.0
-  }
-  scale {
-    x: 2.0
-    y: 2.0
-  }
-  size {
-    x: 10.0
-    y: 20.0
-  }
-  type: TYPE_TEXT
-  text: "-text-"
-  font: "default"
-  id: "delta"
-  pivot: PIVOT_SW
-  inherit_alpha: true
-}
-nodes {
-  position {
-    x: 960.0
-  }
-  scale {
-    x: 2.0
-    y: 2.0
-  }
-  size {
-    x: 10.0
-    y: 20.0
-  }
-  type: TYPE_TEXT
-  text: "-text-"
-  font: "default"
-  id: "deltaCd"
+  id: "pointCd"
   pivot: PIVOT_SE
-  inherit_alpha: true
-}
-nodes {
-  position {
-    y: 120.0
-  }
-  scale {
-    x: 2.0
-    y: 2.0
-  }
-  size {
-    x: 10.0
-    y: 20.0
-  }
-  type: TYPE_TEXT
-  text: "-text-"
-  font: "default"
-  id: "epsilon"
-  pivot: PIVOT_SW
-  inherit_alpha: true
-}
-nodes {
-  position {
-    x: 960.0
-    y: 640.0
-  }
-  size {
-    x: 200.0
-    y: 100.0
-  }
-  type: TYPE_TEXT
-  text: "-text-"
-  font: "default"
-  id: "thingy"
-  pivot: PIVOT_NE
-  inherit_alpha: true
-}
-nodes {
-  position {
-    y: 150.0
-  }
-  scale {
-    x: 2.0
-    y: 2.0
-  }
-  size {
-    x: 10.0
-    y: 20.0
-  }
-  type: TYPE_TEXT
-  text: "-text-"
-  font: "default"
-  id: "zeta"
-  pivot: PIVOT_SW
   inherit_alpha: true
 }
 material: "/builtins/materials/gui.material"

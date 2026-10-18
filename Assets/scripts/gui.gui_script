@@ -1,6 +1,7 @@
 local numbers = require("Assets.scripts.numbers")
 
-local values = {"alpha", "beta", "gamma", "delta", "epsilon", "zeta"}
+local values = {"Points", "Skill", "Time", "Research", "Energy", "Profits", "Cash"}
+local pinnedValues = {true, true, true, true, true, true, true}
 
 function init(self)
 	-- Add initialization code here
@@ -24,18 +25,15 @@ local function convertValue(num)
 end
 
 function update(self, dt)
-	for i, v in ipairs(values) do
-		gui.set_text(gui.get_node(v), v .. ": " .. convertValue(numbers.getValues(i)) .. " | " .. convertValue(numbers.getMulti(i)))
-	end
-	gui.set_text(gui.get_node("deltaCd"), "deltaCd: " .. tostring(numbers.getDeltaOnCd()))
 	local text = ""
-	for i = 1, 5, 1 do
-		for x = 1, 3, 1 do
-			text = text .. numbers.getUpgrade(i, x) .. " "
+	for i, v in ipairs(pinnedValues) do
+		if v then
+			text = text .. values[i] .. ": " .. convertValue(numbers.getValues(i)) .. " | " .. convertValue(numbers.getMulti(i)) .. "\n"
 		end
-		text = text .. "\n"
 	end
-	gui.set_text(gui.get_node("thingy"), text)
+	gui.set_text(gui.get_node("pinnedCurrency"), text)
+	gui.set_text(gui.get_node("researchCd"), "researchCd: " .. tostring(numbers.getResearchOnCd()))
+	gui.set_text(gui.get_node("pointCd"), "pointCd: " .. tostring(numbers.getPointsOnCd()))
 end
 
 function on_message(self, message_id, message, sender)

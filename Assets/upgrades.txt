@@ -1,0 +1,30 @@
+Description Planning:
+Increases:
+    Points:
+        Gain "" Points
+    Skills
+        Reset all Points and gain "" Skills; Also unlocks Time
+    Research
+        Consume 100 Time to conduct Research; Also unlocks Energy
+    Profits
+        Lose Points, Skills, Time, Research and Energy for a new Profit value
+Upgrades:
+    Points:
+        1. Gain +1 Points per Upgrade; Unlock Points Upgrades 2 and 3
+        2. Gain +x1 Points per Upgrade
+        3. x2 Points gain per Upgrade
+    Skills:
+        1. Gain +1 Points per Upgrade; Unlock Skills Upgrades 2, 3 and 4
+        2. Gain +1 Skills per Upgrade
+        3. Gain +x10 Skills per Upgrade
+        4. Points autoboy that clicks every (10 - Upgrade) second(s) [Permanent]
+    Time (Temporary):
+        1. Gain +1 Time per Upgrade; Unlock Time Upgrade 2 and 3
+        2. Gain +1 Skills per Upgrade
+        3. Gain +x2 Points per Upgrade
+    Research (Temporary):
+        1. Gain +1 Points per Upgrade; Unlock Research Upgrade 2 and 3
+        2. Gain +1 Skills per Upgrade
+        3. Gain +x10 Points per Upgrade
+    Cash:
+        1. Stops resetting Points upgrades when doing a Skill Reset
