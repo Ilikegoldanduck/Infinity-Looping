@@ -7,6 +7,12 @@ I'll be using this place as a way to devlog
 How to read version numbers!
 [Official Version (*Announcement on itch.io; Most stable version*)].[Update (*on Itch.io w/ devlog; Will have minor bugs*)].[Repo Update (*Only on Github; May have game breaking bugs*)]
 
+## **[Version 0.1.1]**
+
+### Hotfix
+
+Fixed bug where when values were zero, the game would bug out because nil values can't be used as arithmetic.
+
 ## **[Version 0.1.0]**
 
 Author's Note: Still starving but Eve fixes everything in life

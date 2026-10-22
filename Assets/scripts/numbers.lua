@@ -341,7 +341,11 @@ function numbers.loadFile()
     numberValues = save.values or numberValues
     additives = save.additives or {}
     additiveMultipliers = save.additiveMultipliers or {}
-    multiplicativeMultipliers = save.multiplicativeMultipliers or {}
+    if save.multiplicativeMultipliers then
+        multiplicativeMultipliers = save.multiplicativeMultipliers
+    else
+
+    end
     calculateExtra(save.time or os.time())
     for tree, treeNode in ipairs(save.upgrades or {}) do
         for i, v in ipairs(treeNode) do
@@ -395,7 +399,7 @@ function numbers.getMulti(num)
     elseif num == 4 then
         return ((multiplicativeMultipliers[4] or 1) * (1 + (additiveMultipliers[4] or 0))) * (1 + (additives[4] or 0))  * math.pow(math.log(((numberValues[4] or 0) + 1) * ((numberValues[7] or 0) + 1), 10), (selfIncrease[4] or 0))
     elseif num == 5 then
-        return 1 + math.log((numberValues[4] + 1) * (numberValues[7] + 1), 10)
+        return 1 + math.log(((numberValues[4] or 0) + 1) * ((numberValues[7] or 0) + 1), 10)
     elseif num == 6 then
         return ((numberValues[2] or 0) * (2 - math.pow(2, - (numberValues[5] or 0))) * (1 + math.log((numberValues[4] or 0) + 1, 10)))
     elseif num == 7 then
