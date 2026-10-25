@@ -85,9 +85,10 @@ function on_message(self, message_id, message, sender)
 end
 
 function on_input(self, action_id, action)
-	local width, height = window.get_size()
 	local camPos = go.get_position()
-	local mouse_pos = vmath.vector3((action.x or prevMouse[1]) - (width / 2) + camPos.x, (action.y or prevMouse[2]) - (height / 2) + camPos.y, 0)
+	local mouse_pos = vmath.vector3((action.x or prevMouse[1]) + camPos.x, (action.y or prevMouse[2]) + camPos.y, 0)
+
+	pprint(mouse_pos)
 
 	if action.x then
 		prevMouse[1] = action.x

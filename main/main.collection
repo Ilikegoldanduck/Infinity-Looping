@@ -30,6 +30,10 @@ embedded_instances {
   children: "research"
   children: "skill"
   data: ""
+  position {
+    x: -480.0
+    y: -320.0
+  }
 }
 embedded_instances {
   id: "point"
@@ -70,6 +74,10 @@ embedded_instances {
   "  }\n"
   "}\n"
   ""
+  position {
+    x: 480.0
+    y: 320.0
+  }
 }
 embedded_instances {
   id: "skill"
@@ -109,7 +117,8 @@ embedded_instances {
   "}\n"
   ""
   position {
-    x: 100.0
+    x: 580.0
+    y: 320.0
   }
 }
 embedded_instances {
@@ -120,6 +129,10 @@ embedded_instances {
   children: "skillTree"
   children: "timeTree"
   data: ""
+  position {
+    x: -480.0
+    y: -320.0
+  }
 }
 embedded_instances {
   id: "pointTree"
@@ -193,8 +206,8 @@ embedded_instances {
   "}\n"
   ""
   position {
-    x: 100.0
-    y: 100.0
+    x: 580.0
+    y: 420.0
   }
 }
 embedded_instances {
@@ -247,8 +260,8 @@ embedded_instances {
   "}\n"
   ""
   position {
-    x: 200.0
-    y: 100.0
+    x: 680.0
+    y: 420.0
   }
 }
 embedded_instances {
@@ -301,8 +314,8 @@ embedded_instances {
   "}\n"
   ""
   position {
-    x: 300.0
-    y: 100.0
+    x: 780.0
+    y: 420.0
   }
 }
 embedded_instances {
@@ -355,8 +368,8 @@ embedded_instances {
   "}\n"
   ""
   position {
-    x: 100.0
-    y: 200.0
+    x: 580.0
+    y: 520.0
   }
 }
 embedded_instances {
@@ -409,8 +422,8 @@ embedded_instances {
   "}\n"
   ""
   position {
-    x: 200.0
-    y: 200.0
+    x: 680.0
+    y: 520.0
   }
 }
 embedded_instances {
@@ -463,8 +476,8 @@ embedded_instances {
   "}\n"
   ""
   position {
-    x: 300.0
-    y: 200.0
+    x: 780.0
+    y: 520.0
   }
 }
 embedded_instances {
@@ -517,8 +530,8 @@ embedded_instances {
   "}\n"
   ""
   position {
-    x: 100.0
-    y: 400.0
+    x: 580.0
+    y: 720.0
   }
 }
 embedded_instances {
@@ -571,8 +584,8 @@ embedded_instances {
   "}\n"
   ""
   position {
-    x: 200.0
-    y: 400.0
+    x: 680.0
+    y: 720.0
   }
 }
 embedded_instances {
@@ -625,8 +638,8 @@ embedded_instances {
   "}\n"
   ""
   position {
-    x: 300.0
-    y: 400.0
+    x: 780.0
+    y: 720.0
   }
 }
 embedded_instances {
@@ -667,81 +680,8 @@ embedded_instances {
   "}\n"
   ""
   position {
-    x: 200.0
-  }
-}
-embedded_instances {
-  id: "save"
-  data: "embedded_components {\n"
-  "  id: \"sprite\"\n"
-  "  type: \"sprite\"\n"
-  "  data: \"default_animation: \\\"complete\\\"\\n"
-  "material: \\\"/builtins/materials/sprite.material\\\"\\n"
-  "textures {\\n"
-  "  sampler: \\\"texture_sampler\\\"\\n"
-  "  texture: \\\"/Assets/sourceBin/temp1.tilesource\\\"\\n"
-  "}\\n"
-  "\"\n"
-  "}\n"
-  "embedded_components {\n"
-  "  id: \"label\"\n"
-  "  type: \"label\"\n"
-  "  data: \"size {\\n"
-  "  x: 128.0\\n"
-  "  y: 32.0\\n"
-  "}\\n"
-  "text: \\\"Save\\\\n"
-  "\\\"\\n"
-  "  \\\"\\\"\\n"
-  "font: \\\"/builtins/fonts/default.font\\\"\\n"
-  "material: \\\"/builtins/fonts/label-df.material\\\"\\n"
-  "\"\n"
-  "  position {\n"
-  "    y: 20.0\n"
-  "  }\n"
-  "}\n"
-  ""
-  position {
-    x: -100.0
-    y: 100.0
-  }
-}
-embedded_instances {
-  id: "reset"
-  data: "embedded_components {\n"
-  "  id: \"sprite\"\n"
-  "  type: \"sprite\"\n"
-  "  data: \"default_animation: \\\"reded\\\"\\n"
-  "material: \\\"/builtins/materials/sprite.material\\\"\\n"
-  "size {\\n"
-  "  x: 16.0\\n"
-  "  y: 16.0\\n"
-  "}\\n"
-  "textures {\\n"
-  "  sampler: \\\"texture_sampler\\\"\\n"
-  "  texture: \\\"/Assets/sourceBin/temp1.tilesource\\\"\\n"
-  "}\\n"
-  "\"\n"
-  "}\n"
-  "embedded_components {\n"
-  "  id: \"label\"\n"
-  "  type: \"label\"\n"
-  "  data: \"size {\\n"
-  "  x: 128.0\\n"
-  "  y: 32.0\\n"
-  "}\\n"
-  "text: \\\"Reset\\\"\\n"
-  "font: \\\"/builtins/fonts/default.font\\\"\\n"
-  "material: \\\"/builtins/fonts/label-df.material\\\"\\n"
-  "\"\n"
-  "  position {\n"
-  "    y: 20.0\n"
-  "  }\n"
-  "}\n"
-  ""
-  position {
-    x: -200.0
-    y: 100.0
+    x: 680.0
+    y: 320.0
   }
 }
 embedded_instances {
@@ -782,7 +722,8 @@ embedded_instances {
   "}\n"
   ""
   position {
-    x: 300.0
+    x: 780.0
+    y: 320.0
   }
 }
 embedded_instances {
@@ -842,8 +783,8 @@ embedded_instances {
   "}\n"
   ""
   position {
-    x: 200.0
-    y: 300.0
+    x: 680.0
+    y: 620.0
   }
 }
 embedded_instances {
@@ -896,8 +837,8 @@ embedded_instances {
   "}\n"
   ""
   position {
-    x: 300.0
-    y: 300.0
+    x: 780.0
+    y: 620.0
   }
 }
 embedded_instances {
@@ -950,8 +891,8 @@ embedded_instances {
   "}\n"
   ""
   position {
-    x: 100.0
-    y: 300.0
+    x: 580.0
+    y: 620.0
   }
 }
 embedded_instances {
@@ -1004,8 +945,8 @@ embedded_instances {
   "}\n"
   ""
   position {
-    x: 400.0
-    y: 200.0
+    x: 880.0
+    y: 520.0
   }
 }
 embedded_instances {
@@ -1064,13 +1005,9 @@ embedded_instances {
   "}\n"
   ""
   position {
-    x: 100.0
-    y: 500.0
+    x: 580.0
+    y: 820.0
   }
-}
-embedded_instances {
-  id: "go"
-  data: ""
 }
 embedded_instances {
   id: "cashupgrade2"
@@ -1122,7 +1059,95 @@ embedded_instances {
   "}\n"
   ""
   position {
-    x: 200.0
-    y: 500.0
+    x: 680.0
+    y: 820.0
+  }
+}
+embedded_instances {
+  id: "savestuff"
+  children: "reset"
+  children: "save"
+  data: ""
+  position {
+    x: -480.0
+    y: -320.0
+  }
+}
+embedded_instances {
+  id: "reset"
+  data: "embedded_components {\n"
+  "  id: \"sprite\"\n"
+  "  type: \"sprite\"\n"
+  "  data: \"default_animation: \\\"reded\\\"\\n"
+  "material: \\\"/builtins/materials/sprite.material\\\"\\n"
+  "size {\\n"
+  "  x: 16.0\\n"
+  "  y: 16.0\\n"
+  "}\\n"
+  "textures {\\n"
+  "  sampler: \\\"texture_sampler\\\"\\n"
+  "  texture: \\\"/Assets/sourceBin/temp1.tilesource\\\"\\n"
+  "}\\n"
+  "\"\n"
+  "}\n"
+  "embedded_components {\n"
+  "  id: \"label\"\n"
+  "  type: \"label\"\n"
+  "  data: \"size {\\n"
+  "  x: 128.0\\n"
+  "  y: 32.0\\n"
+  "}\\n"
+  "text: \\\"Reset\\\"\\n"
+  "font: \\\"/builtins/fonts/default.font\\\"\\n"
+  "material: \\\"/builtins/fonts/label-df.material\\\"\\n"
+  "\"\n"
+  "  position {\n"
+  "    y: 20.0\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: 280.0
+    y: 420.0
+  }
+}
+embedded_instances {
+  id: "save"
+  data: "embedded_components {\n"
+  "  id: \"sprite\"\n"
+  "  type: \"sprite\"\n"
+  "  data: \"default_animation: \\\"complete\\\"\\n"
+  "material: \\\"/builtins/materials/sprite.material\\\"\\n"
+  "size {\\n"
+  "  x: 16.0\\n"
+  "  y: 16.0\\n"
+  "}\\n"
+  "textures {\\n"
+  "  sampler: \\\"texture_sampler\\\"\\n"
+  "  texture: \\\"/Assets/sourceBin/temp1.tilesource\\\"\\n"
+  "}\\n"
+  "\"\n"
+  "}\n"
+  "embedded_components {\n"
+  "  id: \"label\"\n"
+  "  type: \"label\"\n"
+  "  data: \"size {\\n"
+  "  x: 128.0\\n"
+  "  y: 32.0\\n"
+  "}\\n"
+  "text: \\\"Save\\\\n"
+  "\\\"\\n"
+  "  \\\"\\\"\\n"
+  "font: \\\"/builtins/fonts/default.font\\\"\\n"
+  "material: \\\"/builtins/fonts/label-df.material\\\"\\n"
+  "\"\n"
+  "  position {\n"
+  "    y: 20.0\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: 380.0
+    y: 420.0
   }
 }
