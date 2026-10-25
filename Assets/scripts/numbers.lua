@@ -373,6 +373,7 @@ function numbers.loadFile()
             end
         end
     end
+    table.insert(upgradeTreeUpdates, {1, 1, hash("refresh")})
     numbers.pointAuto()
 end
 
