@@ -1,5 +1,9 @@
 # **Infinity Looping**
 
+Instructions:
+WASD to move
+Click to upgrade/increment points
+
 Welcome! 
 
 I'll be using this place as a way to devlog
